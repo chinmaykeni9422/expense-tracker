@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser"
 
 const app = express();
 
+//---------------------------------------------------------------------
+
 // cors configuration 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
@@ -18,5 +20,18 @@ app.use(express.urlencoded({limit: "16kb"}));
 
 // cookies configuration
 app.use(cookieParser()) ;
+
+//----------------------------------------------------------------------
+//Routes import
+import addIncomeRouter from "./routes/addIncome.routes.js"
+
+
+
+//----------------------------------------------------------------------
+//Routes decleration
+app.use("/api/v1", addIncomeRouter)
+
+
+
 
 export default app;
