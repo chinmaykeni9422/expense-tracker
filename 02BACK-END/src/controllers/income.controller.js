@@ -70,7 +70,7 @@ const deleteIncome = asyncHandler( async (req, res) => {
         .json(new ApiResponse(200, "income object deleted"))
     })
     .catch(() => {
-        throw new APIError(500, "something went wrong while deleting the message")
+        throw new APIError(500, "something went wrong while deleting the income object")
     }) 
 
 });
