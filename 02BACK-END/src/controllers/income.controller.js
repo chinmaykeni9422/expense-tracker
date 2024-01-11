@@ -5,7 +5,7 @@ import ApiResponse from "../utils/ApiResponse.js"
 
 const addIncome = asyncHandler( async (req, res) =>  {
 
-    const {title, amount, Type, date, category, description} = req.body ;
+    const {title, amount, date, category, description} = req.body ;
 
     // validation - all field should be filled ('Type' is a exception)
     if(
@@ -25,7 +25,6 @@ const addIncome = asyncHandler( async (req, res) =>  {
     const income = await Income.create({
         title,
         amount,
-        Type,
         date,
         category,
         description
@@ -45,4 +44,35 @@ const addIncome = asyncHandler( async (req, res) =>  {
 
 }); 
 
-export {addIncome}
+const getIncome = asyncHandler( async (req, res) => {
+
+    // getting income object
+    const incomes = await Income.find().sort({createdAt: -1});
+
+    //response
+    res
+    .status(200)
+    .json(
+        new ApiResponse(200, incomes, "income got successfully")     
+    )
+
+});
+
+const deleteIncome = asyncHandler( async (req, res) => {
+
+    // getting id of documnet from params
+    const {id} = req.params ;
+    Income
+    .findByIdAndDelete(id)
+    .then(() => {
+        res
+        .status(200)
+        .json(new ApiResponse(200, "income object deleted"))
+    })
+    .catch(() => {
+        throw new APIError(500, "something went wrong while deleting the message")
+    }) 
+
+});
+
+export {addIncome, getIncome, deleteIncome};
