@@ -23,15 +23,14 @@ app.use(cookieParser()) ;
 
 //----------------------------------------------------------------------
 //Routes import
-import addIncomeRouter from "./routes/addIncome.routes.js"
-
-
+import addIncomeRouter from "./routes/Income.routes.js"
+import addexpenseRouter from "./routes/expense.routes.js"
+import userRouter from "./routes/user.routes.js"
 
 //----------------------------------------------------------------------
 //Routes decleration
 app.use("/api/v1", addIncomeRouter)
-
-
-
+app.use("/api/v1", addexpenseRouter)
+app.use("/api/v1", userRouter)
 
 export default app;
