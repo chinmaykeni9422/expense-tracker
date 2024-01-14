@@ -1,6 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle ` 
     *{
         margin: 0;
         padding: 0;
@@ -17,6 +17,14 @@ const GlobalStyle = createGlobalStyle `
         --color-accent: #F56692;
         --color-delete: #FF0000;
     }
+
+    body{
+        font-family: "Nunito", sans-serif;
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        overflow: hidden;
+        color: egba(34, 34, 96, .6);
+    }
+ 
 `;
 
 export default GlobalStyle;
