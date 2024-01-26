@@ -1,8 +1,12 @@
 import React from 'react'
 import styled from "styled-components"
 import {InnerLayout} from "../../styles/Layouts.styles.js"
+import {useGlobalContext} from "../../contexts/GlobalContextProvider.jsx"
 
 function Income() {
+  
+  const {addIncome} = useGlobalContext() ;
+
   return (
     <IncomeStyled>
         

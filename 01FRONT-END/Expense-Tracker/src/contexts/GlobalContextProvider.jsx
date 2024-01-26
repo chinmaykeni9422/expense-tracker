@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import globalContext from "./global.context.js";
+import GlobalContext from "./global.context.js";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8000/api/v1/";
 
 
-const globalContextProvider = ({children}) => {
+export const GlobalContextProvider = ({children}) => {
 
     const [incomes, setIncomes] = useState([]) ;
     const [expense, setExpense] = useState([]) ;
@@ -18,13 +18,14 @@ const globalContextProvider = ({children}) => {
                                     })
     }
 
-    return(
-        <globalContext.Provider value={"hello"}>
+    return (
+        <GlobalContext.Provider value={{addIncome}}>
             {children}
-        </globalContext.Provider>
+        </GlobalContext.Provider>
     )
 }
 
+
 export const useGlobalContext = () => {
-    return useContext(globalContext)
-};
+    return useContext(GlobalContext) ;
+}
