@@ -8,7 +8,7 @@ function Button({name, icon, onClick, bg, bPad, color, bRad}) {
         padding: bPad,
         borderRadius: bRad,
         color: color
-    }} onClick={onclick}>
+    }} onClick={onClick}>
         {icon}
         {name}
     </ButtonStyled>

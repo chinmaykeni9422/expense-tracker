@@ -7,7 +7,7 @@ import Incomeitem from '../Incomeitem/Incomeitem.jsx';
 
 function Income() {
   
-  const {addIncome, getIncomes, incomes} = useGlobalContext() ;
+  const {addIncome, getIncomes, incomes, deleteIncome} = useGlobalContext() ;
 
   useEffect(() => {
     getIncomes()
@@ -40,6 +40,7 @@ function Income() {
                                 type={type}
                                 category={category}
                                 indicatorColor="var(--color-green)"
+                                deleteItem={deleteIncome}
                             />
                     })}
                 </div>

@@ -91,6 +91,7 @@ function Incomeitem({
                         color={'#fff'}
                         iColor={'#fff'}
                         hColor={'var(--color-green)'}
+                        onClick={() => deleteItem(id)}
                     />
                 </div>
 
