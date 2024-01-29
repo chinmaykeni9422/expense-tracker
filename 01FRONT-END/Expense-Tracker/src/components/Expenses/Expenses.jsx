@@ -31,8 +31,8 @@ function Expenses() {
                 </div>
 
                 <div className="expenses">
-                    {expenses.map((income) => {
-                      const {_id, title, amount, date, category, description, type} = income ;
+                    {expenses.map((expense) => {
+                      const {_id, title, amount, date, type, category, description} = expense ;
                       return <Incomeitem 
                                 key={_id}
                                 id={_id}
