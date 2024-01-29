@@ -8,16 +8,17 @@ const BASE_URL = "http://localhost:8000/api/v1/";
 export const GlobalContextProvider = ({children}) => {
 
     const [incomes, setIncomes] = useState([]) ;
-    const [expense, setExpense] = useState([]) ;
+    const [expenses, setExpense] = useState([]) ;
     const [error, setError] = useState(null) ;
 
-    // methods ----
+    // income methods ----
 
     const addIncome = async (income) => {
         const response = await axios.post(`${BASE_URL}add-income`, income)
                                     .catch((error) => {
                                         setError(error.response.data.message)
                                     })
+        getIncomes()
     }
 
     const getIncomes = async () => {
@@ -27,7 +28,43 @@ export const GlobalContextProvider = ({children}) => {
 
     const deleteIncome = async (id) => {
         const response = await axios.delete(`${BASE_URL}delete-income/${id}`)
-        console.log(response) ;
+        getIncomes() ;
+    }
+
+    const totalIncome = () => {
+        let total = 0 ;
+        incomes.forEach((income) => {
+            total = total + income.amount
+        })
+        return total ;
+    }
+
+    // expense methods
+
+    const addExpense = async (expense) => {
+        const response = await axios.post(`${BASE_URL}add-expense`, expense)
+                                    .catch((error) => {
+                                        setError(error.response.data.message)
+                                    })
+        getExpense()
+    }
+
+    const getExpense = async () => {
+        const response = await axios.get(`${BASE_URL}get-expenses`)
+        setExpense(response.data.data)
+    }
+
+    const deleteExpense = async (id) => {
+        const response = await axios.delete(`${BASE_URL}delete-expense/${id}`)
+        getExpense() ;
+    }
+
+    const totalExpense = () => {
+        let total = 0 ;
+        expenses.forEach((Expense) => {
+            total = total + Expense.amount
+        })
+        return total ;
     }
 
     return (
@@ -36,7 +73,13 @@ export const GlobalContextProvider = ({children}) => {
             addIncome,
             getIncomes,
             incomes,
-            deleteIncome
+            deleteIncome,
+            totalIncome,
+            addExpense,
+            getExpense,
+            deleteExpense,
+            totalExpense,
+            expenses
         }}
         >
             {children}

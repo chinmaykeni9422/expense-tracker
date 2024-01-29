@@ -6,9 +6,9 @@ import { useGlobalContext } from '../../contexts/GlobalContextProvider'
 import Button from '../Button/Button'
 import {plus} from '../../utils/Icons'
 
-function Form() {
+function ExpenseForm() {
 
-    const {addIncome, getIncomes} = useGlobalContext()
+    const {addExpense} = useGlobalContext()
 
     const [inputState, setInputState] = useState({
         title: "",
@@ -27,7 +27,7 @@ function Form() {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      addIncome(inputState)
+      addExpense(inputState)
       setInputState({
         title: "",
         amount: "",
@@ -39,14 +39,14 @@ function Form() {
     
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <ExpenseFormStyled onSubmit={handleSubmit}>
 
         <div className="input-control">
             <input 
               type="text" 
               value={title}
               name={'title'} 
-              placeholder='Salary Title'
+              placeholder='Expense Title'
               onChange={handleInput('title')}
             />
         </div>
@@ -57,7 +57,7 @@ function Form() {
               value={amount}
               name={'amount'} 
               id={'amount'}
-              placeholder='Salary amount'
+              placeholder='Expense amount'
               onChange={handleInput('amount')}
             />
         </div>
@@ -104,7 +104,7 @@ function Form() {
 
         <div className="submit-btn">
           <Button
-            name={'add income'}
+            name={'add Expense'}
             icon={plus}
             bPad={'.8rem 1.6rem'}
             bRad={'30px'}
@@ -113,11 +113,11 @@ function Form() {
           />
         </div>
 
-    </FormStyled>
+    </ExpenseFormStyled>
   )
 }
 
-const FormStyled = styled.form`
+const ExpenseFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
@@ -164,4 +164,4 @@ const FormStyled = styled.form`
   }
 `;
 
-export default Form
+export default ExpenseForm

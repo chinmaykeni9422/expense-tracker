@@ -74,7 +74,7 @@ function Incomeitem({
             <div className="inner-content">
 
                 <div className="text">
-                    <p>{dollar} 45</p>
+                    <p>{dollar} {amount}</p>
                     <p>{calender} {date}</p>
                     <p>
                         {comment}
@@ -109,7 +109,7 @@ const IncomeItemStyle = styled.div`
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
-    padding: 1rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -136,7 +136,7 @@ const IncomeItemStyle = styled.div`
         flex-direction: column;
         gap: .2rem;
         h5{
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             padding-left: 2rem;
             position: relative;
             &::before{
