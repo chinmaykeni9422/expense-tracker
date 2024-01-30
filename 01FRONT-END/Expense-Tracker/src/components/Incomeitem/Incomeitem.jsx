@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
-import Button from '../Button/Button';
-import { dateFormat } from '../../utils/dateFormat';
+import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons.jsx';
+import Button from '../Button/Button.jsx';
+import { dateFormat } from '../../utils/dateFormat.js';
 
 function Incomeitem({
     id,
@@ -62,11 +62,12 @@ function Incomeitem({
         }
     }
 
+
   return (
     <IncomeItemStyle indicator={indicatorColor}>
 
         <div className='icon'>
-            {type === 'expense' ? expenseCatIcon() : categoryIcon()}
+            {type === "expense" ? expenseCatIcon() : categoryIcon()}
         </div>
 
         <div className="content">
@@ -110,7 +111,7 @@ const IncomeItemStyle = styled.div`
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
-    padding: 0.5rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
