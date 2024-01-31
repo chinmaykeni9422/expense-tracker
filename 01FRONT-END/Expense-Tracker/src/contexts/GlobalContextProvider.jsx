@@ -93,7 +93,9 @@ export const GlobalContextProvider = ({children}) => {
             deleteExpense,
             totalExpense,
             totalBalance,
-            transactionHistory
+            transactionHistory,
+            error,
+            setError
         }}
         >
             {children}

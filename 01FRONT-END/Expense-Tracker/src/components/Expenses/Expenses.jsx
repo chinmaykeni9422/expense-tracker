@@ -31,22 +31,24 @@ function Expenses() {
                 </div>
 
                 <div className="expenses">
-                    {expenses.map((expense) => {
-                      const {_id, title, amount, date, category, description, Type} = expense ;
+                    <IncomeListWrapper>
+                        {expenses.map((expense) => {
+                        const {_id, title, amount, date, category, description, Type} = expense ;
 
-                      return <Incomeitem 
-                                key={_id}
-                                id={_id}
-                                title={title}
-                                description={description}
-                                amount={amount}
-                                date={date}
-                                type={Type} 
-                                category={category}
-                                indicatorColor="var(--color-red)"
-                                deleteItem={deleteExpense}
-                            />
-                    })}
+                        return <Incomeitem 
+                                    key={_id}
+                                    id={_id}
+                                    title={title}
+                                    description={description}
+                                    amount={amount}
+                                    date={date}
+                                    type={Type} 
+                                    category={category}
+                                    indicatorColor="var(--color-red)"
+                                    deleteItem={deleteExpense}
+                                />
+                        })}
+                    </IncomeListWrapper>
                 </div>
 
             </div>
@@ -85,6 +87,11 @@ const ExpenseStyled = styled.div`
             flex: 1;
         }
     }
+`;
+
+const IncomeListWrapper = styled.div`
+  overflow-y: auto;      /* Enable vertical scrollbar */
+  max-height: 450px;     /* Set a max height to trigger scrollbar */
 `;
 
 export default Expenses;

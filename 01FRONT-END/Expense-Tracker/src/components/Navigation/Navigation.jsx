@@ -12,7 +12,7 @@ function Navigation({active, setActive}) {
             <div className="user-con">
 
                 <div className="text">
-                    <h2>chinmay</h2>
+                    <h2>Your Name</h2>
                     <p>Your Money</p>
                 </div>
 

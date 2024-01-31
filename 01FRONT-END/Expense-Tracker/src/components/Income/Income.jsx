@@ -31,21 +31,23 @@ function Income() {
                 </div>
 
                 <div className="incomes">
-                    {incomes.map((income) => {
-                      const {_id, title, amount, date, category, description, type} = income ;
-                      return <Incomeitem 
-                                key={_id}
-                                id={_id}
-                                title={title}
-                                description={description}
-                                amount={amount}
-                                date={date}
-                                type={type}
-                                category={category}
-                                indicatorColor="var(--color-green)"
-                                deleteItem={deleteIncome}
-                            />
-                    })}
+                    <IncomeListWrapper>
+                        {incomes.map((income) => {
+                        const {_id, title, amount, date, category, description, type} = income ;
+                        return <Incomeitem 
+                                    key={_id}
+                                    id={_id}
+                                    title={title}
+                                    description={description}
+                                    amount={amount}
+                                    date={date}
+                                    type={type}
+                                    category={category}
+                                    indicatorColor="var(--color-green)"
+                                    deleteItem={deleteIncome}
+                                />
+                        })}
+                    </IncomeListWrapper>
                 </div>
 
             </div>
@@ -84,6 +86,11 @@ const IncomeStyled = styled.div`
             flex: 1;
         }
     }
+`;
+
+const IncomeListWrapper = styled.div`
+  overflow-y: auto;      /* Enable vertical scrollbar */
+  max-height: 450px;     /* Set a max height to trigger scrollbar */
 `;
 
 export default Income;

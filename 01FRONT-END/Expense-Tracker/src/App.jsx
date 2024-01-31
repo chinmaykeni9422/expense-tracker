@@ -7,6 +7,7 @@ import { useMemo, useState } from "react"
 import Dashboard from "./components/Dashboard/Dashboard.jsx"
 import Expenses from "./components/Expenses/Expenses.jsx"
 import Income from "./components/Income/Income.jsx"
+import Home from "../src/components/Home/Home.jsx"
 
 function App() {
 
@@ -16,12 +17,14 @@ const [active, setActive] = useState(1) ;
   const displayData = () => {
     switch(active){
       case 1:
-        return <Dashboard />
+        return <Home/>
       case 2:
         return <Dashboard />
       case 3:
+        return <Dashboard />
+      case 4:
         return <Income />
-      case 4: 
+      case 5: 
         return <Expenses />
       default: 
         return <Dashboard />
@@ -40,9 +43,9 @@ const [active, setActive] = useState(1) ;
 
       <MainLayout>     
         <Navigation active={active} setActive={setActive} />
-        <main>
-          {displayData()}
-        </main>
+          <main>
+            {displayData()}
+          </main>
       </MainLayout>
 
       </AppStyled>
