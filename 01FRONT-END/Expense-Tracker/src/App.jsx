@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard.jsx"
 import Expenses from "./components/Expenses/Expenses.jsx"
 import Income from "./components/Income/Income.jsx"
 import Home from "../src/components/Home/Home.jsx"
+import Register from "./components/Register/Register.jsx"
 
 function App() {
 
@@ -21,11 +22,11 @@ const [active, setActive] = useState(1) ;
       case 2:
         return <Dashboard />
       case 3:
-        return <Dashboard />
-      case 4:
         return <Income />
-      case 5: 
+      case 4: 
         return <Expenses />
+      case 5: 
+        return <Register />
       default: 
         return <Dashboard />
     }

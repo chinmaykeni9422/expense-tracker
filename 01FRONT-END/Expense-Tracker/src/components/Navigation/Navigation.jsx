@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { menuItems } from '../../utils/MenuItem.js';
-import { signout } from '../../utils/Icons.jsx';
+import { login, signout} from '../../utils/Icons.jsx';
+import Button from '../Button/Button.jsx';
 
 function Navigation({active, setActive}) {   
 
@@ -12,8 +13,8 @@ function Navigation({active, setActive}) {
             <div className="user-con">
 
                 <div className="text">
-                    <h2>Your Name</h2>
-                    <p>Your Money</p>
+                    <h2>IE TRACK</h2>
+                    <p>Track money</p>
                 </div>
 
             </div>
@@ -28,9 +29,13 @@ function Navigation({active, setActive}) {
             </ul>
 
             <div className="bottom-nav">
-                <li>
-                    {signout} Sign Out
-                </li>
+                <Button
+                    icon={login}
+                    name={'Sign in'}
+                    bg={'linear-gradient(to right,  #FFB6C1, #d8d8d8)'}
+                    bPad={'15px'}
+                    bRad={'10px'}
+                />
             </div>
               
         </NavStyled>

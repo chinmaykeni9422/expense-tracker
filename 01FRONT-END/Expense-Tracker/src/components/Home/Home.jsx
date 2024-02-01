@@ -25,7 +25,7 @@ const HomeStyled = styled.div`
   text-align: center;
   padding: 4rem 0;
   height: 100vh;
-  background: linear-gradient(to right,  #FF4081, #333333); /* Gradient background */
+  background: linear-gradient(to right,  #FFB6C1, #d8d8d8); /* Gradient background */
   border-radius: 20px;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 1s ease;
@@ -49,13 +49,13 @@ const HomeStyled = styled.div`
 const HeaderText = styled.div`
   h2 {
     font-size: 3rem;
-    color: #fff; /* White text color */
+    color: rgba(34, 34, 96, .6);
     margin-bottom: 1rem;
   }
 
   p {
     font-size: 1.5rem;
-    color: #f8f9fa; /* Light gray text color */
+    color: rgba(34, 34, 96, .6);
   }
 `;
 
@@ -65,7 +65,7 @@ const IntroText = styled.div`
 
   p {
     font-size: 1.5rem;
-    color: #fff; /* White text color */
+    color: rgba(34, 34, 96, .6);
     line-height: 1.6;
     margin-top: 1.5rem;
   }

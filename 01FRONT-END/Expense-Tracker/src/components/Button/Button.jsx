@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from "styled-components"
 
-function Button({name, icon, onClick, bg, bPad, color, bRad}) {
+function Button({name, icon, onClick, bg, bPad, color, bRad, bWid}) {
   return (
     <ButtonStyled style={{
         background: bg,
         padding: bPad,
         borderRadius: bRad,
-        color: color
+        color: color,
+        width: bWid
     }} onClick={onClick}>
         {icon}
         {name}
@@ -16,15 +17,16 @@ function Button({name, icon, onClick, bg, bPad, color, bRad}) {
 }
 
 const ButtonStyled = styled.button`
-    outline: none;
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    cursor: pointer;
-    transition: all .4s ease-in-out;
+outline: none;
+border: none;
+font-family: inherit;
+font-size: inherit;
+display: flex;
+align-items: center;
+justify-content: center; /* Add this line for horizontal centering */
+gap: 0.5rem;
+cursor: pointer;
+transition: all 0.4s ease-in-out;
 `;
 
 export default Button;

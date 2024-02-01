@@ -1,4 +1,4 @@
-import {dashboard, expenses, transactions, trend, circle} from '../utils/Icons.jsx'
+import {dashboard, expenses, trend, circle, register} from '../utils/Icons.jsx'
 
 export const menuItems = [
     {
@@ -15,20 +15,20 @@ export const menuItems = [
     },
     {
         id: 3,
-        title: "View Transactions",
-        icon: transactions,
-        link: "/dashboard",
-    },
-    {
-        id: 4,
         title: "Incomes",
         icon: trend,
         link: "/dashboard",
     },
     {
-        id: 5,
+        id: 4,
         title: "Expenses",
         icon: expenses,
         link: "/dashboard",
     },
+    {
+        id: 5,
+        title: "Register",
+        icon: register,
+        link: "/dashboard",
+    }
 ]
