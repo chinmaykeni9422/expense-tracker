@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { menuItems } from '../../utils/MenuItem.js';
-import { login, signout} from '../../utils/Icons.jsx';
-import Button from '../Button/Button.jsx';
 
 function Navigation({active, setActive}) {   
 
@@ -27,16 +25,6 @@ function Navigation({active, setActive}) {
                             </li>
                 })}
             </ul>
-
-            <div className="bottom-nav">
-                <Button
-                    icon={login}
-                    name={'Sign in'}
-                    bg={'linear-gradient(to right,  #FFB6C1, #d8d8d8)'}
-                    bPad={'15px'}
-                    bRad={'10px'}
-                />
-            </div>
               
         </NavStyled>
     </div>
