@@ -9,6 +9,7 @@ import Expenses from "./components/Expenses/Expenses.jsx"
 import Income from "./components/Income/Income.jsx"
 import Home from "../src/components/Home/Home.jsx"
 import Register from "./components/Register/Register.jsx"
+import Login from "./components/Login/Login.jsx"
 
 function App() {
 
@@ -27,6 +28,8 @@ const [active, setActive] = useState(1) ;
         return <Expenses />
       case 5: 
         return <Register />
+      case 6:
+        return <Login />
       default: 
         return <Dashboard />
     }
