@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Button from '../Button/Button';
 
+const BASE_URL = "http://localhost:8000/api/v1/";
+
 const RegistrationForm = () => {
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -23,14 +26,21 @@ const RegistrationForm = () => {
 
         try {
             // Send registration data to your backend API
-            const response = await axios.post('/api/register', formData);
+            const response = await axios.post(`${BASE_URL}register`, formData);
 
             // Handle success or display an appropriate message
-            console.log('Registration successful:', response.data);
+            alert('Registration successful:', response.data);
         } catch (error) {
             // Handle error, display error message, etc.
-            console.error('Registration failed:', error.message);
+            alert('Registration failed:', error.message);
         }
+
+        setFormData({
+            username: '',
+            email: '',
+            fullname: '',
+            password: '',
+          })
     };
 
     return (
