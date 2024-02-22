@@ -22,25 +22,37 @@ const RegistrationForm = () => {
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        try {
-            // Send registration data to your backend API
-            const response = await axios.post(`${BASE_URL}register`, formData);
+        const {username, email, fullname, password} = formData
 
-            // Handle success or display an appropriate message
-            alert('Registration successful:', response.data);
-        } catch (error) {
-            // Handle error, display error message, etc.
-            alert('Registration failed:', error.message);
-        }
+        axios.post(`${BASE_URL}register`, {
+            username,
+            email,
+            fullname,
+            password
+        })
+        .then((response)=> {
+
+            const data = response.data ;
+            alert(data.message) ;
+
+        })
+        .catch((error) => {
+
+            if(error.response){
+                window.alert(error.message)
+            }
+
+        })
 
         setFormData({
             username: '',
             email: '',
             fullname: '',
             password: '',
-          })
+        })
     };
 
     return (
