@@ -5,7 +5,7 @@ export const menuItems = [
         id: 1,
         title: 'Home',
         icon: circle,
-        link: '/Home'
+        link: ''
     },
     {
         id: 2,
