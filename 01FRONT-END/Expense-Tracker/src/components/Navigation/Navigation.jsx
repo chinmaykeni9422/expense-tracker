@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from "styled-components";
 import { menuItems } from '../../utils/MenuItem.js';
+import {NavLink} from "react-router-dom"
 
 function Navigation({active, setActive}) {   
 
@@ -19,10 +20,12 @@ function Navigation({active, setActive}) {
 
             <ul className="menu-items">
                 {menuItems.map((item) => {
-                    return <li className={active === item.id ? "active": ""} key={item.id} onClick={() => setActive(item.id)}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </li>
+                    return <li /*className={active === item.id ? "active": ""}*/ key={item.id} /*onClick={() => setActive(item.id)}*/>
+                                <NavLink to={`${item.link}`}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+                                </NavLink>
+                           </li>
                 })}
             </ul>
               

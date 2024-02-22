@@ -10,10 +10,11 @@ import Income from "./components/Income/Income.jsx"
 import Home from "../src/components/Home/Home.jsx"
 import Register from "./components/Register/Register.jsx"
 import Login from "./components/Login/Login.jsx"
+import { Outlet } from "react-router-dom"
 
 function App() {
 
-const [active, setActive] = useState(1) ;
+// const [active, setActive] = useState(1) ;
 
 //--------
   const displayData = () => {
@@ -46,9 +47,10 @@ const [active, setActive] = useState(1) ;
       {orbMemo}
 
       <MainLayout>     
-        <Navigation active={active} setActive={setActive} />
+        <Navigation /*active={active} setActive={setActive}*/ />
           <main>
-            {displayData()}
+            {/* {displayData()} */}
+            <Outlet />
           </main>
       </MainLayout>
 
