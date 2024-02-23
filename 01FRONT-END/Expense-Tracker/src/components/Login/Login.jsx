@@ -90,7 +90,7 @@ function Login() {
 
 const LoginStyled = styled.div`
   background-color: #f4f4f4;
-  min-height: 100vh;
+  min-height: 90vh;
 `;
 
 const LoginContainer = styled.div`

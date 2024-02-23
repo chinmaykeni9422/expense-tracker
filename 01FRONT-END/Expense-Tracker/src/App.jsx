@@ -3,38 +3,10 @@ import bg from "./img/bg.png"
 import {MainLayout} from "./styles/Layouts.styles.js"
 import Orb from "./components/Orb/Orb.jsx"
 import Navigation from "./components/Navigation/Navigation.jsx"
-import { useMemo, useState } from "react"
-import Dashboard from "./components/Dashboard/Dashboard.jsx"
-import Expenses from "./components/Expenses/Expenses.jsx"
-import Income from "./components/Income/Income.jsx"
-import Home from "../src/components/Home/Home.jsx"
-import Register from "./components/Register/Register.jsx"
-import Login from "./components/Login/Login.jsx"
+import { useMemo} from "react"
 import { Outlet } from "react-router-dom"
 
 function App() {
-
-// const [active, setActive] = useState(1) ;
-
-//--------
-  const displayData = () => {
-    switch(active){
-      case 1:
-        return <Home/>
-      case 2:
-        return <Dashboard />
-      case 3:
-        return <Income />
-      case 4: 
-        return <Expenses />
-      case 5: 
-        return <Register />
-      case 6:
-        return <Login />
-      default: 
-        return <Dashboard />
-    }
-  }
 
 //--------
   const orbMemo = useMemo(() => {
@@ -47,9 +19,8 @@ function App() {
       {orbMemo}
 
       <MainLayout>     
-        <Navigation /*active={active} setActive={setActive}*/ />
+        <Navigation/>
           <main>
-            {/* {displayData()} */}
             <Outlet />
           </main>
       </MainLayout>

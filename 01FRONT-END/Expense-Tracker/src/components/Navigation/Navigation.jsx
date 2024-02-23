@@ -2,8 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 import { menuItems } from '../../utils/MenuItem.js';
 import {NavLink} from "react-router-dom"
+import Button from '../Button/Button';
 
-function Navigation({active, setActive}) {   
+
+function Navigation() {   
 
   return (
     <div>
@@ -19,15 +21,58 @@ function Navigation({active, setActive}) {
             </div>
 
             <ul className="menu-items">
-                {menuItems.map((item) => {
-                    return <li /*className={active === item.id ? "active": ""}*/ key={item.id} /*onClick={() => setActive(item.id)}*/>
-                                <NavLink to={`${item.link}`}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </NavLink>
-                           </li>
-                })}
+                {menuItems.map((item) => (
+                    <li key={item.id}>
+                    <NavLink to={`${item.link}`} style={{ textDecoration: 'none' }}>
+                        <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '1rem',
+                            gridTemplateColumns: '40px auto',
+                            margin: '0.6rem 0',
+                            fontWeight: 500,
+                            cursor: 'pointer',
+                            transition: 'all 0.4s ease-in-out',
+                            color: 'rgba(34, 34, 96, .6)',
+                            paddingLeft: '1rem',
+                            position: 'relative',
+                        }}
+                        >
+                            <div
+                                style={{
+                                color: 'rgba(34, 34, 96, 0.6)',
+                                fontSize: '1.4rem',
+                                transition: 'all 0.4s ease-in-out',
+                                }}
+                            >
+                                {item.icon}
+                            </div>
+                            <span
+                                style={{
+                                    marginLeft: '0.5rem',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.2rem', 
+                                    color: 'rgba(34, 34, 96, 1)',
+                                    transition: 'color 0.4s ease-in-out'
+                                }}
+                            >
+                                {item.title}
+                            </span>
+                        </div>
+                    </NavLink>
+                    </li>
+                ))}
             </ul>
+
+            <Button 
+              name={'Log out'}
+              bg={'linear-gradient(to right,  #FFB6C1, #d8d8d8)'}
+              bPad={'15px'}
+              bRad={'10px'}
+              bWid={'100%'}
+            />
+
               
         </NavStyled>
     </div>
@@ -98,4 +143,21 @@ const NavStyled = styled.nav`
     }
 `;
 
+
+
+
 export default Navigation
+
+// color: 'red', 
+                                        // textDecoration: 'underline',
+                                        // padding: '2rem 1.5rem',
+                                        // width: '374px',
+                                        // height: '100%',  
+                                        // background: 'rgba(252, 246, 249, 0.78)',
+                                        // border: '3px solid #FFFFFF',
+                                        // backdropFilter: 'blur(4.5px)',
+                                        // borderRadius: '32px',
+                                        // display: 'flex',
+                                        // flexDirection: 'column',
+                                        // justifyContent: 'space-between',
+                                        // gap: '2rem',
