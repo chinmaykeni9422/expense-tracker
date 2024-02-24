@@ -12,4 +12,17 @@ router.route("/login").post(loginUser);
 router.route("/logout").post(verifyJWT ,logoutUser)
 router.route("/refresh-token").post(refreshAccessToken)
 
+// dashboard page
+router.route("/dashboard").get(verifyJWT, (req, res) => {
+    res.send(req.user);
+})
+
+router.route("/Income").get(verifyJWT, (req, res) => {
+    res.send(req.user);
+})
+
+router.route("/Expense").get(verifyJWT, (req, res) => {
+    res.send(req.user);
+})
+
 export default router; 
