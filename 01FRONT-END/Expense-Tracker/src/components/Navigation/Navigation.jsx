@@ -1,11 +1,34 @@
 import React from 'react';
 import styled from "styled-components";
 import { menuItems } from '../../utils/MenuItem.js';
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import Button from '../Button/Button';
+import axios from 'axios';
 
+
+const BASE_URL = "http://localhost:8000/api/v1/";
 
 function Navigation() {   
+
+    const navigate = useNavigate()
+
+    const Logout = async (event) => {
+
+        event.preventDefault() ;
+
+        axios.post(`${BASE_URL}logout`)
+        .then((response) => {
+            navigate('/login') ;
+            if(response.status !== 200){
+                const error = new Error(res.error);
+                throw error ;
+            }
+          })
+        .catch((error) => {
+            console.log(error) ;
+        })
+
+    }
 
   return (
     <div>
@@ -71,6 +94,7 @@ function Navigation() {
               bPad={'15px'}
               bRad={'10px'}
               bWid={'100%'}
+              onClick={Logout} 
             />
 
               

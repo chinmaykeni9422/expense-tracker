@@ -4,14 +4,33 @@ import {InnerLayout} from "../../styles/Layouts.styles.js"
 import {useGlobalContext} from "../../contexts/GlobalContextProvider.jsx"
 import Form from '../Form/Form.jsx';
 import Incomeitem from '../Incomeitem/Incomeitem.jsx';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const BASE_URL = "http://localhost:8000/api/v1/";
 
 function Income() {
+
+    const navigate = useNavigate();
+
+    const callIncomePage = async () => {
+        try {
+          const response = await axios.get(`${BASE_URL}Income`);
+        } catch (error) {
+          console.log(error);
+          navigate('/login');
+        }
+    };
   
   const {getIncomes, incomes, deleteIncome, totalIncome} = useGlobalContext() ;
 
   useEffect(() => {
     getIncomes()
   }, [])
+
+  useEffect(() => {
+    callIncomePage();
+  }, []);
 
   return (
     <IncomeStyled>

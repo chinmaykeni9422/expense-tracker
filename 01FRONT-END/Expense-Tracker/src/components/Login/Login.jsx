@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts.styles';
 import Button from '../Button/Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = "http://localhost:8000/api/v1/";
 
 
 function Login() {
+
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState('') ;
   const [password, setPassword] = useState('') ;
@@ -23,6 +26,7 @@ function Login() {
     .then((response) => {
       const data = response.data ;
       alert(data.message) ;
+      navigate("/") ;
     })
     .catch((error) => {
 
