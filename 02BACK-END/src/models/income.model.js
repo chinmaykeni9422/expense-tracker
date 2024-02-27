@@ -1,38 +1,43 @@
-import mongoose , {Schema } from "mongoose"
+import mongoose, { Schema } from "mongoose";
 
 const incomeSchema = new Schema(
     {
-        title:{
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        },
+        title: {
             type: String,
             required: true,
             trim: true,
-            maxLenght: 50
+            maxlength: 50
         },
-        amount:{
+        amount: {
             type: Number,
             required: true,
             trim: true,
-            maxLenght: 20
+            maxlength: 20
         },
-        Type:{
+        Type: {
             type: String,
-            default:"income"
+            default: "income"
         },
-        date:{
+        date: {
             type: Date,
             required: true,
             trim: true,
         },
-        category:{
+        category: {
             type: String,
             required: true,
             trim: true,
         },
-        description:{
+        description: {
             type: String,
             required: true,
             trim: true,
-            maxLenght: 20
+            maxlength: 20
         }
     },
     {

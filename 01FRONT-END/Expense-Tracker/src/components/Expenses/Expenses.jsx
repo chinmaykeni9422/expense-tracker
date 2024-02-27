@@ -4,33 +4,14 @@ import {InnerLayout} from "../../styles/Layouts.styles.js"
 import {useGlobalContext} from "../../contexts/GlobalContextProvider.jsx"
 import Incomeitem from '../Incomeitem/Incomeitem.jsx';
 import ExpenseForm from '../Form/ExpenseForm.jsx';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const BASE_URL = "http://localhost:8000/api/v1/";
 
 function Expenses() {
-
-    const navigate = useNavigate();
-
-    const callExpensePage = async () => {
-        try {
-          const response = await axios.get(`${BASE_URL}Expense`);
-        } catch (error) {
-          console.log(error);
-          navigate('/login');
-        }
-    };
   
   const {getExpense, expenses, deleteExpense, totalExpense} = useGlobalContext() ;
 
   useEffect(() => {
     getExpense()
   }, [])
-
-  useEffect(() => {
-    callExpensePage();
-  }, []);
 
   return (
     <ExpenseStyled>

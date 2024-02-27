@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Button from '../Button/Button';
-
-const BASE_URL = "http://localhost:8000/api/v1/";
+import BASE_URL from '../../SECRET';
 
 const RegistrationForm = () => {
 

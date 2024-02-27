@@ -5,23 +5,8 @@ import Chart  from '../Chart/Chart.jsx';
 import {dollar} from '../../utils/Icons.jsx'
 import { useGlobalContext } from '../../contexts/GlobalContextProvider.jsx';
 import History from '../History/History.jsx';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const BASE_URL = "http://localhost:8000/api/v1/";
 
 function Dashboard() {
-
-  const navigate = useNavigate();
-
-  const callDashboardPage = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}dashboard`);
-    } catch (error) {
-      console.log(error);
-      navigate('/login');
-    }
-  };
 
   const {totalIncome, incomes, expenses, totalExpense, totalBalance, getIncomes, getExpense} = useGlobalContext()
 
@@ -29,10 +14,6 @@ function Dashboard() {
     getIncomes()
     getExpense()
   }, [])
-
-  useEffect(() => {
-    callDashboardPage();
-  }, []);
 
   return (
     <DashboardStyled>
