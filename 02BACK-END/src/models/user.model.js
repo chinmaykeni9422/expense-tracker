@@ -1,8 +1,6 @@
 import mongoose , {Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import Income from "./income.model.js";
-import Expense from "./expense.model.js";
 
 const userSchema = new Schema(
     {
@@ -27,8 +25,6 @@ const userSchema = new Schema(
         type: String,
         required: [true, 'Password is required'],
       },
-      incomes: [Income],
-      expenses: [Expense],
       refreshToken: {
         type: String,
       }
