@@ -2,11 +2,6 @@ import mongoose, { Schema } from "mongoose";
 
 const expenseSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true
-        },
         title: {
             type: String,
             required: true,

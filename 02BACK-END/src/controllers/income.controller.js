@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import Income from "../models/income.model.js"
+import User from "../models/user.model.js";
 import APIError from "../utils/ApiError.js"
 import ApiResponse from "../utils/ApiResponse.js"
 
@@ -22,38 +22,44 @@ const addIncome = asyncHandler( async (req, res) =>  {
     }
 
     //create income object - create entry in db
-    const income = await Income.create({
+    const income = {
         title,
         amount,
         date,
         category,
-        description
-    })
-
-    //check for income creation
-    if(!income){
-        throw new APIError(500, "Something went wrong while creating income object");
+        description,
     }
 
-    //return response
-    res
-    .status(201)
-    .json(
-        new ApiResponse(200, income, "Income adde successfully")
-    )
+    try {
+        // Find the user by ID
+        const user = await User.findById(req.user._id);
+    
+        // Add the income to the user's incomes array
+        user.incomes.push(income);
+    
+        // Save the updated user document
+        await user.save();
+    
+        // Return success response
+        res.status(201).json(
+          new ApiResponse(200, user.incomes[user.incomes.length - 1], "Income added successfully")
+        );
+      } catch (error) {
+        throw new APIError(500, "Something went wrong while creating income");
+    }
 
 }); 
 
 const getIncome = asyncHandler( async (req, res) => {
 
     // getting income object
-    const incomes = await Income.find().sort({createdAt: -1});
+    const user = await User.findById(req.user._id);
 
     //response
     res
     .status(200)
     .json(
-        new ApiResponse(200, incomes, "income got successfully")     
+        new ApiResponse(200, user.incomes, "Incomes retrieved successfully")     
     )
 
 });
@@ -62,17 +68,22 @@ const deleteIncome = asyncHandler( async (req, res) => {
 
     // getting id of documnet from params
     const {id} = req.params ;
-    Income
-    .findByIdAndDelete(id)
-    .then(() => {
-        res
-        .status(200)
-        .json(new ApiResponse(200, "income object deleted"))
-    })
-    .catch(() => {
-        throw new APIError(500, "something went wrong while deleting the income object")
-    }) 
 
+    try {
+        // Find the user by ID
+        const user = await User.findById(req.user._id);
+    
+        // Remove the income with the given id from the user's incomes array
+        user.incomes.pull(id);
+    
+        // Save the updated user document
+        await user.save();
+    
+        // Return success response
+        res.status(200).json(new ApiResponse(200, "Income deleted successfully"));
+      } catch (error) {
+        throw new APIError(500, "Something went wrong while deleting the income");
+      }
 });
 
 export {addIncome, getIncome, deleteIncome};

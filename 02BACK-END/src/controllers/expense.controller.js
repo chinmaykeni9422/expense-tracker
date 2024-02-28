@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import Expense from "../models/expense.model.js"
+import User from "../models/user.model.js"
 import APIError from "../utils/ApiError.js"
 import ApiResponse from "../utils/ApiResponse.js"
 
@@ -22,57 +22,55 @@ const addExpense = asyncHandler( async (req, res) =>  {
     }
 
     //create income object - create entry in db
-    const expense = await Expense.create({
+    const expense = {
         title,
         amount,
         date,
         category,
         description
-    })
-
-    //check for expense creation
-    if(!expense){
-        throw new APIError(500, "Something went wrong while creating expense object");
     }
 
-    //return response
+    // Save the updated user document with the new expense
+    await User.findByIdAndUpdate(req.user._id, {
+        $push: { expenses: expense }
+    });
+
+    // Return response
     res
     .status(201)
-    .json(
-        new ApiResponse(200, expense, "expense added successfully")
-    )
+    .json(new ApiResponse(200, expense, "Expense added successfully"));
+
 
 }); 
 
 const getExpense = asyncHandler( async (req, res) => {
 
-    // getting income object
-    const expenses = await Expense.find().sort({createdAt: -1});
+    try {
+        // Get the user document and return the expenses array
+        const user = await User.findById(req.user._id).select("expenses");
+        const expenses = user ? user.expenses : [];
 
-    //response
-    res
-    .status(200)
-    .json(
-        new ApiResponse(200, expenses, "expense got successfully")     
-    )
+        res.status(200).json(new ApiResponse(200, expenses, "Expense got successfully"));
+    } catch (error) {
+        throw new APIError(500, "Something went wrong while fetching expense");
+    }
 
 });
 
 const deleteExpense = asyncHandler( async (req, res) => {
 
-    // getting id of documnet from params
-    const {id} = req.params ;
+    const { id } = req.params;
 
-    Expense
-    .findByIdAndDelete(id)
-    .then(() => {
-        res
-        .status(200)
-        .json(new ApiResponse(200, "expense object deleted"))
-    })
-    .catch(() => {
-        throw new APIError(500, "something went wrong while deleting the expense object")
-    }) 
+    try {
+        // Update the user document to remove the specified expense
+        await User.findByIdAndUpdate(req.user._id, {
+            $pull: { expenses: { _id: id } }
+        });
+
+        res.status(200).json(new ApiResponse(200, "Expense object deleted"));
+    } catch (error) {
+        throw new APIError(500, "Something went wrong while deleting the expense object");
+    }
 
 });
 

@@ -1,11 +1,12 @@
-import {Router} from "express"
-import {addExpense, getExpense, deleteExpense} from "../controllers/expense.controller.js"
+import { Router } from "express";
+import { addExpense, getExpenses, deleteExpense } from "../controllers/expense.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
 // Expense routes
-router.route("/add-expense").post(addExpense);
-router.route("/get-expenses").get(getExpense);
-router.route("/delete-expense/:id").delete(deleteExpense);
+router.route("/add-expense").post(verifyJWT, addExpense);
+router.route("/get-expenses").get(verifyJWT, getExpenses); // Updated to getExpenses
+router.route("/delete-expense/:id").delete(verifyJWT, deleteExpense);
 
-export default router; 
+export default router;

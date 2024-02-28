@@ -1,35 +1,42 @@
 import mongoose , {Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import Income from "./income.model.js";
+import Expense from "./expense.model.js";
 
 const userSchema = new Schema(
     {
-        username:{
-            type: String,
-            required: true,
-            unique: true,
-            trim: true
-        },
-        email:{
-            type: String,
-            required: true,
-            unique: true,
-            trim: true
-        },
-        fullname:{
-            type: String,
-            required: true,
-            trim: true
-        },
-        password:{
-            type: String,
-            required: [true, 'Password is required']
-        },
-        refreshToken:{
-            type: String
-        }
+      username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+      },
+      fullname: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      password: {
+        type: String,
+        required: [true, 'Password is required'],
+      },
+      incomes: [Income],
+      expenses: [Expense],
+      refreshToken: {
+        type: String,
+      }
+    },
+    {
+      timestamps: true,
     }
-);
+  );
 
 //password encryption
 userSchema.pre("save", async function(next){
